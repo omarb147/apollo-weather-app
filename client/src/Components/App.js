@@ -1,9 +1,17 @@
 import React, { Component } from "react";
-import ApolloClient, { gql } from "apollo-boost";
+import "../index.css";
+import Helmet from "react-helmet";
+import MainDisplay from "./MainDisplay";
 
 export class App extends Component {
   render() {
-    return <div>Hello World</div>;
+    return (
+      <div className="main-app-row">
+        <div className="main-app">
+          <MainDisplay />
+        </div>
+      </div>
+    );
   }
 }
 

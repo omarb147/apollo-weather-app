@@ -4,6 +4,9 @@ const { resolvers } = require("./WeatherAPI/WeatherResolvers");
 const { WeatherAPI } = require("./WeatherAPI/WeatherAPI");
 
 const server = new ApolloServer({
+  cors: {
+    origin: "*"
+  },
   typeDefs,
   resolvers,
   dataSources: () => {
