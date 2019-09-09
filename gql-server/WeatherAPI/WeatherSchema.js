@@ -9,7 +9,7 @@ const typeDefs = gql`
     description: String
     icon: String
     windSpeed: Float
-    humidty: Float
+    humidity: Float
   }
 
   type City {
@@ -21,8 +21,8 @@ const typeDefs = gql`
   }
 
   type Query {
-    getForecastByCity(city: String): City
-    getForecastByLocation(lat: Float, lon: Float): City
+    ForecastCity(city: String): City
+    ForecastLocation(lat: Float, lon: Float): City
   }
 `;
 
