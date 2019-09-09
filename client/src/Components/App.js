@@ -1,18 +1,30 @@
 import React, { Component } from "react";
-import "../index.css";
 import Helmet from "react-helmet";
-import MainDisplay from "./MainDisplay";
+import styled from "styled-components";
+import "../lib/weather-icons-master/css/weather-icons.min.css";
+import "../index.css";
+import ForecastTable from "./Views/ForecastTable";
+import ScaleSwitcher from "./Views/ScaleSwitcher";
+import MainDisplay from "./Views/MainDisplay";
 
-export class App extends Component {
-  render() {
-    return (
-      <div className="main-app-row">
-        <div className="main-app">
-          <MainDisplay />
-        </div>
+const AppDisplay = styled.div`
+  display: flex;
+  height: 100vh;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+`;
+
+const App = () => {
+  return (
+    <AppDisplay className="main-app-row">
+      <div className="main-app">
+        <MainDisplay />
       </div>
-    );
-  }
-}
+
+      <ScaleSwitcher />
+    </AppDisplay>
+  );
+};
 
 export default App;

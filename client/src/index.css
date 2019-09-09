@@ -7,16 +7,14 @@ div {
 }
 
 .main-app-row {
-  display: flex;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
 }
 
 .main-app {
   background-color: #2b2b2b;
   color: white !important;
-  flex-basis: 1000px;
+  flex-basis: 50%;
+  min-height: 50%;
+  min-width: 40%;
 }
 
 /* OVERALL GRID  */
@@ -25,14 +23,21 @@ div {
   flex-direction: column;
 }
 
-.display-grid-item {
+.display-data,
+.display-icons,
+.display-title {
   display: flex;
   padding: 30px;
   align-items: center;
   flex: 1;
 }
 
-/* TOP DISPLAY DATA ROW */
+/* DISPLAY TITTLE ROW */
+.display-title {
+  justify-content: center;
+}
+
+/* DISPLAY DATA ROW */
 .display-data {
   flex: 1;
 }
@@ -48,15 +53,81 @@ div {
 }
 
 .temp-display {
-  font-size: 9rem;
-  flex: 1 1 40%;
+  flex: 1 1 30%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
-sup {
-  font-size: 2rem;
+.temp-display i {
+  font-size: 6em;
+}
+
+.temp {
+  font-size: 5em;
 }
 
 /* BOTTOM DISPLAY ICONS ROW */
 .display-icons {
   justify-content: space-between;
+}
+
+/* CSS FOR UNITS SLIDER */
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #2b2b2b;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: whitesmoke;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }
