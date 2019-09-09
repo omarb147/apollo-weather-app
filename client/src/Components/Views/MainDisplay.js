@@ -65,7 +65,7 @@ const MainDisplay = () => {
         <div>{humidity}% humidty</div>
         <div>6:57AM sunrise</div>
       </div>
-      <ForecastTable />
+      {/* <ForecastTable /> */}
     </div>
   );
 
