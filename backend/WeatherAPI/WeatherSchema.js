@@ -5,7 +5,7 @@ const typeDefs = gql`
     date: String
     temp: Float
     lowTemp: Float
-    minTemp: Float
+    highTemp: Float
     description: String
     icon: String
     windSpeed: Float
@@ -15,6 +15,7 @@ const typeDefs = gql`
   type City {
     name: String
     country: String
+    sunrise: String
     lat: Float
     lon: Float
     weather: [Weather]

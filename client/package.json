@@ -6,6 +6,7 @@
     "@apollo/react-hooks": "^3.0.1",
     "apollo-boost": "^0.4.4",
     "apollo-datasource-rest": "^0.6.4",
+    "date-fns": "^2.1.0",
     "graphql": "^14.5.4",
     "graphql-tag": "^2.10.1",
     "react": "^16.9.0",

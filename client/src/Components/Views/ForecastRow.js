@@ -2,39 +2,46 @@ import React from "react";
 import styled from "styled-components";
 import TemperatureDisplay from "./TemperatureDisplay";
 import PropTypes from "prop-types";
+import format from "date-fns";
 
 const TableRow = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   color: #2b2b2b !important;
   padding: 10px;
 `;
 
 const Date = styled.div`
   color: #2b2b2b;
+  font-size: 1.2em;
+  flex: 2;
+`;
+
+const WeatherIcon = styled(Date)`
   font-size: 2em;
 `;
 
-const WeatherIcon = styled.div`
-  color: #2b2b2b;
-  font-size: 2em;
+const Description = styled(Date)`
+  flex: 3;
 `;
 
-const ForecastRow = ({ scale, value, icon, desc }) => {
+const Temperature = styled(Date)`
+  flex: 8;
+  display: flex;
+`;
+
+const ForecastRow = ({ date, scale, value, icon, desc, highTemp, lowTemp }) => {
   return (
     <TableRow>
-      <Date>Sat</Date>
+      <Date>{date}</Date>
       <WeatherIcon>
-        <i class="wi wi-night-sleet"></i>
+        <i class={`wi wi-owm-${icon}`}></i>
       </WeatherIcon>
-      <TemperatureDisplay size={2} scale="F" value={100.22} />
-      <div>
-        99
-        <sup>
-          <sup>o</sup>F
-        </sup>
-      </div>
-      <div>sunny</div>
+      <Temperature>
+        <TemperatureDisplay size={1} scale={scale} value={highTemp} />
+        <TemperatureDisplay size={1} scale={scale} value={lowTemp} />
+      </Temperature>
+      <Description>{desc}</Description>
     </TableRow>
   );
 };

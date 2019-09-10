@@ -10,7 +10,7 @@ export const typeDefs = gql`
 `;
 
 export const defaults = {
-  scale: "F"
+  scale: "C"
 };
 
 export const resolvers = {};

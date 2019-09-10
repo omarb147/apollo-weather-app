@@ -9,18 +9,27 @@ class WeatherAPI extends RESTDataSource {
   }
 
   willSendRequest(request) {
-    request.params.set("appid", this.apiID);
+    if (!request.path.includes("sunrise")) {
+      request.params.set("appid", this.apiID);
+    }
   }
 
   didEncounterError(error) {
     console.log(error);
   }
 
+  async getSunriseDetails(lat, lon) {
+    const sunset = await this.get(`https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lon}&date=today`);
+    return sunset;
+  }
+
   async getForecastByCity(city) {
     try {
       const data = await this.get(`/daily?q=${city}`);
-
-      return forecastReducer(data) || {};
+      let results = await forecastReducer(data);
+      let sunriseData = await this.getSunriseDetails(results.lat, results.lon);
+      results["sunrise"] = sunriseData.results.sunrise;
+      return results || {};
     } catch (error) {
       console.log(error);
       return {};
@@ -40,7 +49,7 @@ class WeatherAPI extends RESTDataSource {
 }
 
 const forecastReducer = data => {
-  const { name, country, lat, lon } = data.city;
+  const { name, country, coord } = data.city;
   const weather = data.list.map(forecast => {
     return {
       date: forecast.dt,
@@ -48,11 +57,13 @@ const forecastReducer = data => {
       lowTemp: forecast.temp.min,
       highTemp: forecast.temp.max,
       humidity: forecast.humidity,
-      description: forecast.weather[0].main,
-      icon: forecast.weather[0].icon,
+      description: forecast.weather[0].description,
+      icon: forecast.weather[0].id,
       windSpeed: forecast.speed
     };
   });
+
+  const { lat, lon } = coord;
   return { name, country, lat, lon, weather };
 };
 

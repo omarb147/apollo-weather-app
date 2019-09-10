@@ -5,14 +5,15 @@ import gql from "graphql-tag";
 import { useApolloClient, useQuery } from "@apollo/react-hooks";
 
 const ToggleDiv = styled.div`
-  flex-basis: 1%;
+  flex-basis: 10%;
+  padding-top: 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 10%;
 `;
 
-const GET_SCALE = gql`
+export const GET_SCALE = gql`
   {
     scale @client
   }

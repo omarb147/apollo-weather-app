@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import ForecastRow from "./ForecastRow";
+import { format, fromUnixTime } from "date-fns";
 
 const Table = styled.div`
   background-color: #f0eff0;
@@ -8,15 +9,19 @@ const Table = styled.div`
   flex-direction: column;
 `;
 
-const ForecastTable = () => {
+const ForecastTable = ({ weather, scale }) => {
   return (
     <Table>
-      <ForecastRow />
-      <ForecastRow />
-      <ForecastRow />
-      <ForecastRow />
-      <ForecastRow />
-      <ForecastRow />
+      {weather.map(forecast => (
+        <ForecastRow
+          date={format(fromUnixTime(forecast.date), "ccc")}
+          scale={scale}
+          icon={forecast.icon}
+          desc={forecast.description}
+          highTemp={forecast.highTemp}
+          lowTemp={forecast.lowTemp}
+        />
+      ))}
     </Table>
   );
 };
